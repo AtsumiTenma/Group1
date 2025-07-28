@@ -38,11 +38,10 @@ public class DataInitializer implements CommandLineRunner {
         // スケジュール作成
         // 1. 動作確認しやすいように、必ず「現在時刻」が含まれるスケジュールを作成
         DayOfWeek today = LocalDateTime.now().getDayOfWeek();
-        LocalTime now = LocalTime.now();
         Schedule activeSchedule = new Schedule(
                 today,
-                now.minusHours(1), // 現在時刻の1時間前
-                now.plusHours(1),  // 現在時刻の1時間後
+                LocalTime.MIDNIGHT, // 現在時刻の1時間前
+                LocalTime.of(23, 59, 59),  // 現在時刻の1時間後
                 coach1
         );
         activeSchedule.setStudents(Set.of(student1, student2));

@@ -2,12 +2,11 @@ package jp.kobe_u.cs.tennis.tennis.controller;
 
 import jp.kobe_u.cs.tennis.tennis.repository.UserRepository;
 import jp.kobe_u.cs.tennis.tennis.service.AttendanceService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -17,22 +16,42 @@ public class StudentController {
 
     private final UserRepository userRepository;
     private final AttendanceService attendanceService;
-    
-    // 本来はログイン機能で認証情報から取得するが、今回は固定ID(生徒)を使用
+
+    // 本来はログインから取得。今回は固定
     private final Long MOCK_STUDENT_ID = 1L;
 
     @GetMapping("/qr")
-    public String showQrPage(Model model) {
-        // ログイン中の生徒情報をビューに渡す
-        userRepository.findById(MOCK_STUDENT_ID).ifPresent(student -> model.addAttribute("student", student));
-        return "student/qr";
+    public String showQrPage(Model model, @ModelAttribute("message") String flashMessage) {
+        // 生徒情報
+        userRepository.findById(MOCK_STUDENT_ID)
+                .ifPresent(student -> model.addAttribute("student", student));
+
+
+        // フラッシュメッセージ
+        if (flashMessage != null && !flashMessage.isBlank()) {
+            model.addAttribute("message", flashMessage);
+        }
+
+        return "student_attendance";
     }
-    
+
     @PostMapping("/attend")
-    public String recordAttendance(RedirectAttributes redirectAttributes) {
+    public String recordAttendance(RedirectAttributes ra) {
         String message = attendanceService.recordAttendance(MOCK_STUDENT_ID);
-        // 処理結果のメッセージをリダイレクト先に渡す
-        redirectAttributes.addFlashAttribute("message", message);
+        ra.addFlashAttribute("message", message);
+
         return "redirect:/student/qr";
+    }
+
+    @GetMapping
+    public String studentRoot() {
+        return "redirect:/student/qr";
+    }
+
+    // フォーム（必要なら項目を増やせます）
+    @Data
+    public static class AttendanceForm {
+        // 例: 連絡メモなどが欲しければここにフィールドを追加
+        // private String note;
     }
 }
