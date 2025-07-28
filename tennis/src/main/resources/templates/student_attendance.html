@@ -11,7 +11,12 @@
   <body class="container mt-3">
     <h1>出欠情報送信</h1>
 
-    <div th:if="${message}" class="alert alert-info" th:text="${message}"></div>
+    <div
+      th:if="${message != null and !#strings.isEmpty(message)}"
+      class="alert alert-info"
+      th:text="${message}"
+    ></div>
+    <img th:src="@{/images/qr.png}" alt="QRコード" class="img-fluid" />
 
     <div th:if="${student}">
       <p>学籍番号: <span th:text="${student.id}">1</span></p>
