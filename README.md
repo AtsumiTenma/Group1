@@ -23,3 +23,10 @@
 - 土橋：tsuna1230
 - 福岡：StrTree
 - 山地：yamaji23
+
+## Docker 利用方法
+
+```
+cd tennis-docker
+docker-compose up
+```
