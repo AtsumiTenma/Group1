@@ -8,6 +8,9 @@
 <body>
     <div class="container">
         <h1 class="mt-5">テニスクラブ出席情報</h1>
+        <div class="text-center my-4">
+            <img th:src="@{/images/qr.png}" alt="QR Code" style="width: 150px; height: 150px;">
+        </div>
         <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
         <form action="/student/attendance" method="post" class="mt-4" th:object="${attendanceForm}">
             <div class="form-group">

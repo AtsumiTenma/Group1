@@ -10,16 +10,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jp.kobe_u.cs.tennis.tennis.form.AttendanceForm;
 
 @Controller
-@RequestMapping("/student")
 public class StudentController {
 
-    @GetMapping("/attendance")
+    @GetMapping("/")
+    public String redirectToLogin() {
+        return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/home")
+    public String home() {
+        return "home";
+    }
+
+    @GetMapping("/schedule")
+    public String schedule() {
+        return "schedule";
+    }
+
+    @GetMapping("/student/attendance")
     public String showAttendanceForm(Model model) {
         model.addAttribute("attendanceForm", new AttendanceForm());
         return "student_attendance";
     }
 
-    @PostMapping("/attendance")
+    @PostMapping("/student/attendance")
     public String submitAttendanceForm(@ModelAttribute("attendanceForm") AttendanceForm form, Model model) {
         // ここでフォームデータを処理します（例：データベースに保存）
         System.out.println("氏名: " + form.getStudentName());
