@@ -1,51 +1,38 @@
 package jp.kobe_u.cs.tennis.tennis.controller;
 
+import jp.kobe_u.cs.tennis.tennis.repository.UserRepository;
+import jp.kobe_u.cs.tennis.tennis.service.AttendanceService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import jp.kobe_u.cs.tennis.tennis.form.AttendanceForm;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
+@RequestMapping("/student")
+@RequiredArgsConstructor
 public class StudentController {
 
-    @GetMapping("/")
-    public String redirectToLogin() {
-        return "redirect:/login";
-    }
+    private final UserRepository userRepository;
+    private final AttendanceService attendanceService;
+    
+    // 本来はログイン機能で認証情報から取得するが、今回は固定ID(生徒)を使用
+    private final Long MOCK_STUDENT_ID = 1L;
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/qr")
+    public String showQrPage(Model model) {
+        // ログイン中の生徒情報をビューに渡す
+        userRepository.findById(MOCK_STUDENT_ID).ifPresent(student -> model.addAttribute("student", student));
+        return "student/qr";
     }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-
-    @GetMapping("/schedule")
-    public String schedule() {
-        return "schedule";
-    }
-
-    @GetMapping("/student/attendance")
-    public String showAttendanceForm(Model model) {
-        model.addAttribute("attendanceForm", new AttendanceForm());
-        return "student_attendance";
-    }
-
-    @PostMapping("/student/attendance")
-    public String submitAttendanceForm(@ModelAttribute("attendanceForm") AttendanceForm form, Model model) {
-        // ここでフォームデータを処理します（例：データベースに保存）
-        System.out.println("氏名: " + form.getStudentName());
-        System.out.println("日付: " + form.getAttendanceDate());
-        System.out.println("状況: " + form.getStatus());
-        
-        model.addAttribute("message", "出席情報が正常に送信されました。");
-        return "student_attendance";
+    
+    @PostMapping("/attend")
+    public String recordAttendance(RedirectAttributes redirectAttributes) {
+        String message = attendanceService.recordAttendance(MOCK_STUDENT_ID);
+        // 処理結果のメッセージをリダイレクト先に渡す
+        redirectAttributes.addFlashAttribute("message", message);
+        return "redirect:/student/qr";
     }
 }
