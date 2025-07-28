@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>出席情報送信</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">テニスクラブ出席情報</h1>
+        <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+        <form action="/student/attendance" method="post" class="mt-4" th:object="${attendanceForm}">
+            <div class="form-group">
+                <label for="studentName">氏名</label>
+                <input type="text" class="form-control" id="studentName" th:field="*{studentName}" placeholder="氏名を入力" required>
+            </div>
+            <div class="form-group">
+                <label for="attendanceDate">日付</label>
+                <input type="date" class="form-control" id="attendanceDate" th:field="*{attendanceDate}" required>
+            </div>
+            <div class="form-group">
+                <label for="status">出席状況</label>
+                <select class="form-control" id="status" th:field="*{status}">
+                    <option value="present">出席</option>
+                    <option value="absent">欠席</option>
+                    <option value="late">遅刻</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">送信</button>
+        </form>
+    </div>
+</body>
+</html>
