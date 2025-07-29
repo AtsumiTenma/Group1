@@ -96,26 +96,31 @@
       </a>
     </div>
 
+   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1 class="mb-4">出席状況一覧</h1>
+
+    <!-- 日付フィルターフォーム -->
+    <form th:action="@{/coach/attendance}" method="get" class="form-inline">
+      <input type="date" name="date" class="form-control mr-2" 
+            th:value="${selectedDate}" />
+      <button type="submit" class="btn btn-primary">日付で絞り込み</button>
+    </form>
+    </div>
 
     <table class="table table-striped">
       <thead class="thead-light">
         <tr>
           <th>学生ID</th>
           <th>学生名</th>
-          <th>曜日</th>
-          <th>開始時刻</th>
-          <th>終了時刻</th>
-          <th>コーチ</th>
+          <th>出席日時</th>
+          <th>担当コーチ</th>
         </tr>
       </thead>
       <tbody>
         <tr th:each="att : ${attendances}">
           <td th:text="${att.student.id}">1</td>
           <td th:text="${att.student.username}">田中 太郎</td>
-          <td th:text="${att.schedule.dayOfWeek}">TUESDAY</td>
-          <td th:text="${att.schedule.startTime}">00:00</td>
-          <td th:text="${att.schedule.endTime}">23:59:59</td>
+          <td th:text="${#temporals.format(att.attendanceDateTime, 'yyyy-MM-dd HH:mm:ss')}">2023-03-14 10:00</td>
           <td th:text="${att.schedule.coach.username}">佐藤 コーチ</td>
         </tr>
       </tbody>
