@@ -68,7 +68,7 @@
   <img th:src="@{/images/qr.png}" alt="QRコード" class="qr-image img-fluid" />
 
   <div th:if="${student}" class="student-info text-center">
-    <p>学籍番号: <span th:text="${student.id}">1</span></p>
+    <p>ID: <span th:text="${student.id}">1</span></p>
     <p>氏名: <span th:text="${student.username}">山田太郎</span></p>
   </div>
 
