@@ -30,3 +30,7 @@
 cd tennis-docker
 docker-compose up
 ```
+
+## 画面ルーティング
+- / ... 生徒側ホーム
+- /coach ... コーチ側ホーム
