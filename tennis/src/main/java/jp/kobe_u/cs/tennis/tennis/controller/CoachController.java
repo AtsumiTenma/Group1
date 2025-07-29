@@ -22,12 +22,16 @@ public class CoachController {
     // 本来はログイン機能で認証情報から取得するが、今回は固定ID(コーチ)を使用
     private final Long MOCK_COACH_ID = 3L;
 
+    @GetMapping({ "", "/" })
+    public String showCoachHome(Model model) {
+        userRepository.findById(MOCK_COACH_ID).ifPresent(coach -> model.addAttribute("coach", coach));
+        return "coach"; // templates/coach.html
+    }
+
     @GetMapping("/attendance")
     public String showAttendanceList(Model model) {
         List<Attendance> attendances = attendanceService.getRecentAttendancesForCoach(MOCK_COACH_ID);
         model.addAttribute("attendances", attendances);
-        // コーチ情報をビューに渡す
-        userRepository.findById(MOCK_COACH_ID).ifPresent(coach -> model.addAttribute("coach", coach));
-        return "coach/attendance";
+        return "coach_attendance_list"; // templates/coach_attendance_list.html
     }
 }
