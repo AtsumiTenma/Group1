@@ -2,6 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>出席状況一覧</title>
   <link
     rel="stylesheet"
@@ -22,24 +23,44 @@
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     }
 
+    .header-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .home-link img {
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
     h1.mb-4 {
       position: relative;
       padding-bottom: 0.5rem;
+      text-align: center;
     }
+
     h1.mb-4::after {
       content: "";
       position: absolute;
       bottom: 0;
-      left: 0;
       width: 4rem;
       height: 4px;
-      background: #007bff;
       border-radius: 2px;
     }
 
     .table thead {
       background: linear-gradient(90deg, #0062cc, #0056b3);
     }
+
     .table thead th {
       color: #fff;
       border: none;
@@ -59,6 +80,7 @@
       border: none;
       transition: background 0.3s ease;
     }
+
     .btn-primary:hover {
       background: linear-gradient(45deg, #0056b3, #004085) !important;
     }
@@ -66,6 +88,14 @@
 </head>
 <body>
   <div class="container">
+
+    <div class="header-row">
+      <a th:href="@{/coach}" class="btn btn-link home-link">
+        <img src="/images/home-icon.png" alt="ホームアイコン" />
+        ホームに戻る
+      </a>
+    </div>
+
     <h1 class="mb-4">出席状況一覧</h1>
 
     <table class="table table-striped">
@@ -91,9 +121,6 @@
       </tbody>
     </table>
 
-    <div class="mt-4 text-right">
-      <a th:href="@{/coach}" class="btn btn-primary">ホームに戻る</a>
-    </div>
   </div>
 </body>
 </html>
