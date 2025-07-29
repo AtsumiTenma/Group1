@@ -1,26 +1,61 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <title>基本スケジュール</title>
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-    />
-  </head>
-  <body>
-    <div class="container">
-      <h1 class="mt-5">基本スケジュール</h1>
-      <div class="mt-4">
-        <img
-          th:src="@{/images/schedule.png}"
-          alt="スケジュール"
-          class="img-fluid"
-        />
-      </div>
-      <div class="mt-4" style="padding: bottom 2rem">
-        <a href="/" class="btn btn-primary">ホームに戻る</a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>基本スケジュール</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    .header-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-top: 16px;
+      margin-bottom: 16px;
+    }
+
+    h1.schedule-title {
+      text-align: center;
+      font-size: 1.6rem;
+      margin-bottom: 24px;
+    }
+
+    .container {
+      max-width: 480px;
+      padding: 0 16px;
+      margin: 0 auto;
+    }
+
+    .img-fluid {
+      margin-bottom: 24px;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header-row">
+      <img src="/images/home-icon.png" alt="ホーム" style="width: 16px; height: 16px; " />
+      <a href="/" class="btn btn-link home-link">ホームに戻る</a>
     </div>
-  </body>
+
+    <h1 class="schedule-title">基本スケジュール</h1>
+
+    <div>
+      <img
+        th:src="@{/images/schedule.png}"
+        alt="スケジュール"
+        class="img-fluid"
+      />
+    </div>
+
+  </div>
+</body>
 </html>
