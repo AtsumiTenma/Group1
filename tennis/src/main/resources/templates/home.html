@@ -82,16 +82,16 @@
 </div>
 
 
-    <p class="welcome">ようこそ、<span th:text="${username}">User</span>さん</p>
+    <p class="welcome">ようこそ、<span th:text="${student.username}">User</span>さん</p>
 
     <div class="section-title">申請メニュー</div>
-    <button class="btn btn-outline-dark btn-block">欠席事前申請</button>
-    <button class="btn btn-outline-dark btn-block">振替申請</button>
+    <a href="/student/absence" class="btn btn-outline-dark btn-block">欠席事前申請</a>
+    <a href="/student/transfer" class="btn btn-outline-dark btn-block">振替申請</a>
 
     <div class="divider"></div>
 
     <div class="section-title">確認メニュー</div>
-    <a href="/schedule" class="btn btn-dark btn-block">基本スケジュール確認</a>
+    <a href="/student/schedule" class="btn btn-dark btn-block">基本スケジュール確認</a>
 
   </div>
 </body>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>出席状況一覧</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    body {
+      background-color: #f0f2f5;
+      font-family: "Segoe UI", Roboto, "ヒラギノ角ゴ Pro W3", Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 900px;
+      background: #ffffff;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 1rem;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .home-link img {
+      width: 18px;
+      height: 18px;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    h1.mb-4 {
+      position: relative;
+      padding-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    h1.mb-4::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      width: 4rem;
+      height: 4px;
+      border-radius: 2px;
+    }
+
+    .table thead {
+      background: linear-gradient(90deg, #0062cc, #0056b3);
+    }
+
+    .table thead th {
+      color: #fff;
+      border: none;
+      vertical-align: middle;
+    }
+
+    .table tbody tr:hover {
+      background-color: #e9f2ff;
+    }
+
+    .table td, .table th {
+      padding: 0.75rem 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #0069d9, #0056b3) !important;
+      border: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(45deg, #0056b3, #004085) !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="header-row">
+      <a th:href="@{/coach}" class="btn btn-link home-link">
+        <img src="/images/home-icon.png" alt="ホームアイコン" />
+        ホームに戻る
+      </a>
+    </div>
+
+   <div class="d-flex justify-content-between align-items-center mb-3">
+    <h1 class="mb-4">振替申請一覧</h1>
+
+    <!-- 日付フィルターフォーム -->
+    <form th:action="@{/coach/attendance}" method="get" class="form-inline">
+      <input type="date" name="date" class="form-control mr-2" 
+            th:value="${selectedDate}" />
+      <button type="submit" class="btn btn-primary">日付で絞り込み</button>
+    </form>
+    </div>
+
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th>学生ID</th>
+          <th>学生名</th>
+          <th>第一希望</th>
+          <th>第二希望</th>
+          <th>第三希望</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td ></td>
+          <td ></td>
+          <td ></td>
+          <td ></td>
+          <td ></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</body>
+</html>

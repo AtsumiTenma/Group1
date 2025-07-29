@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>振替申請</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    .container {
+      max-width: 540px;
+      padding: 0 16px;
+      margin: 0 auto;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .form-section {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+
+    .form-section h5 {
+      margin-bottom: 12px;
+      font-weight: bold;
+    }
+
+    .btn-block {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .alert {
+      font-size: 0.95rem;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="container mt-4">
+
+  <!-- ヘッダー -->
+  <div class="header-row">
+    <img src="/images/home-icon.png" alt="ホーム" style="width: 16px; height: 16px;" />
+    <a th:href="@{/}" class="btn btn-link home-link">ホームへ戻る</a>
+  </div>
+
+  <h1 class="schedule-title">振替申請</h1>
+
+  <!-- 振替申請フォーム -->
+  <form method="post" class="form-wrapper" onsubmit="return false">
+
+    <!-- 氏名 -->
+    <div class="form-group">
+      <label for="username">氏名</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        class="form-control"
+        placeholder="例: 山田太郎"
+        required
+      />
+    </div>
+
+    <!-- 第1希望 -->
+    <div class="form-section">
+      <h5>第1希望</h5>
+      <div class="form-group">
+        <label for="firstDate">日付</label>
+        <input type="date" id="firstDate" name="firstDate" class="form-control" required />
+      </div>
+      <div class="form-group">
+        <label for="firstTime">時間</label>
+        <input type="time" id="firstTime" name="firstTime" class="form-control" required />
+      </div>
+    </div>
+
+    <!-- 第2希望 -->
+    <div class="form-section">
+      <h5>第2希望</h5>
+      <div class="form-group">
+        <label for="secondDate">日付</label>
+        <input type="date" id="secondDate" name="secondDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="secondTime">時間</label>
+        <input type="time" id="secondTime" name="secondTime" class="form-control" />
+      </div>
+    </div>
+
+    <!-- 第3希望 -->
+    <div class="form-section">
+      <h5>第3希望</h5>
+      <div class="form-group">
+        <label for="thirdDate">日付</label>
+        <input type="date" id="thirdDate" name="thirdDate" class="form-control" />
+      </div>
+      <div class="form-group">
+        <label for="thirdTime">時間</label>
+        <input type="time" id="thirdTime" name="thirdTime" class="form-control" />
+      </div>
+    </div>
+
+    <!-- 送信ボタン -->
+    <button class="btn btn-success btn-block mb-5">振替を申請する</button>
+  </form>
+
+</body>
+</html>

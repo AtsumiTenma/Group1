@@ -50,4 +50,19 @@ public class CoachController {
     model.addAttribute("attendances", attendances);
     return "coach_attendance_list";
 }
+    @GetMapping("/schedule")
+    public String showSchedule(Model model) {
+        return "coach_schedule"; // templates/coach_schedule.html
+    }
+
+    @GetMapping("/absence")
+    public String showAbsence(Model model) {
+
+        return "coach_absence"; // templates/coach_absence.html
+    }
+
+    @GetMapping("/transfer")
+    public String showTransfer(Model model) {
+        return "coach_transfer"; // templates/coach_transfer.html
+    }
 }

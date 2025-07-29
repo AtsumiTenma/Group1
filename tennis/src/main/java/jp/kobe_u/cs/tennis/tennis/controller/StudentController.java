@@ -2,7 +2,6 @@ package jp.kobe_u.cs.tennis.tennis.controller;
 
 import jp.kobe_u.cs.tennis.tennis.repository.UserRepository;
 import jp.kobe_u.cs.tennis.tennis.service.AttendanceService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,16 +20,10 @@ public class StudentController {
     private final Long MOCK_STUDENT_ID = 1L;
 
     @GetMapping("/qr")
-    public String showQrPage(Model model, @ModelAttribute("message") String flashMessage) {
+    public String showQrPage(Model model) {
         // 生徒情報
         userRepository.findById(MOCK_STUDENT_ID)
                 .ifPresent(student -> model.addAttribute("student", student));
-
-
-        // フラッシュメッセージ
-        if (flashMessage != null && !flashMessage.isBlank()) {
-            model.addAttribute("message", flashMessage);
-        }
 
         return "student_attendance";
     }
@@ -43,15 +36,18 @@ public class StudentController {
         return "redirect:/student/qr";
     }
 
-    @GetMapping
-    public String studentRoot() {
-        return "redirect:/student/qr";
+     @GetMapping("/schedule")
+    public String schedule() {
+        return "student_schedule";
     }
 
-    // フォーム（必要なら項目を増やせます）
-    @Data
-    public static class AttendanceForm {
-        // 例: 連絡メモなどが欲しければここにフィールドを追加
-        // private String note;
+    @GetMapping("/absence")
+    public String absence() {
+        return "student_absence";
+    }
+
+    @GetMapping("/transfer")
+    public String transfer() {
+        return "student_transfer";
     }
 }

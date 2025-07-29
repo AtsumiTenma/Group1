@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>基本スケジュール変更申請</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+  />
+  <style>
+    .container {
+      max-width: 480px;
+      padding: 0 16px;
+      margin: 0 auto;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .btn-block {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .alert {
+      font-size: 0.95rem;
+    }
+
+    .home-link {
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body class="container mt-4">
+
+  <!-- ヘッダー -->
+  <div class="header-row">
+    <img src="/images/home-icon.png" alt="ホーム" style="width: 16px; height: 16px;" />
+    <a th:href="@{/coach}" class="btn btn-link home-link">ホームへ戻る</a>
+  </div>
+
+    <h1 class="schedule-title mb-5">基本スケジュール変更</h1>
+
+
+  <!-- PDFアップロードフォーム -->
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    class="form-wrapper"
+    onsubmit="return false"/>
+
+    <div class="form-group">
+      <input
+        type="file"
+        id="file"
+        name="file"
+        class="form-control-file"
+        accept="application/pdf"
+        required
+      />
+    </div>
+
+    <button class="btn btn-primary btn-block">アップロード</button>
+  </form>
+
+</body>
+</html>
