@@ -60,8 +60,10 @@
     <a th:href="@{/}" class="btn btn-link home-link">ホームへ戻る</a>
   </div>
 
+  <h1 class="schedule-title">振替申請</h1>
+
   <!-- 振替申請フォーム -->
-  <form method="post" class="form-wrapper">
+  <form method="post" class="form-wrapper" onsubmit="return false">
 
     <!-- 氏名 -->
     <div class="form-group">
@@ -116,7 +118,7 @@
     </div>
 
     <!-- 送信ボタン -->
-    <button class="btn btn-success btn-block">振替を申請する</button>
+    <button class="btn btn-success btn-block mb-5">振替を申請する</button>
   </form>
 
 </body>

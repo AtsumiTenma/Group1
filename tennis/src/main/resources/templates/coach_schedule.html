@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>欠席事前申請</title>
+  <title>基本スケジュール変更申請</title>
   <link
     rel="stylesheet"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
@@ -42,41 +42,34 @@
 </head>
 <body class="container mt-4">
 
-  <!-- ヘッダーリンク -->
+  <!-- ヘッダー -->
   <div class="header-row">
     <img src="/images/home-icon.png" alt="ホーム" style="width: 16px; height: 16px;" />
-    <a th:href="@{/}" class="btn btn-link home-link">ホームへ戻る</a>
+    <a th:href="@{/coach}" class="btn btn-link home-link">ホームへ戻る</a>
   </div>
 
-    <h1 class="schedule-title">欠席事前申請</h1>
+    <h1 class="schedule-title mb-5">基本スケジュール変更</h1>
 
 
-  <!-- 欠席申請フォーム -->
-  <form method="post" class="form-wrapper" onsubmit="return false">
+  <!-- PDFアップロードフォーム -->
+  <form
+    method="post"
+    enctype="multipart/form-data"
+    class="form-wrapper"
+    onsubmit="return false"/>
+
     <div class="form-group">
-      <label for="username">氏名</label>
       <input
-        type="text"
-        id="username"
-        name="username"
-        class="form-control"
-        placeholder="例: 山田太郎"
+        type="file"
+        id="file"
+        name="file"
+        class="form-control-file"
+        accept="application/pdf"
         required
       />
     </div>
 
-   <div class="form-section">
-      <div class="form-group">
-        <label for="firstDate">日付</label>
-        <input type="date" id="firstDate" name="firstDate" class="form-control" required />
-      </div>
-      <div class="form-group">
-        <label for="firstTime">時間</label>
-        <input type="time" id="firstTime" name="firstTime" class="form-control" required />
-      </div>
-    </div>
-
-    <button class="btn btn-danger btn-block">欠席を申請する</button>
+    <button class="btn btn-primary btn-block">アップロード</button>
   </form>
 
 </body>
